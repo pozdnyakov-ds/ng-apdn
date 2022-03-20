@@ -1,0 +1,53 @@
+<p-dialog [contentStyle]="{'overflow':'visible'}" header="" [(visible)]="displayModal" [modal]="true" [style]="{width: '400px', 'overflow-y':'visible !important'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false" [closable]="false">
+  <ng-template pTemplate="header">
+
+  </ng-template>
+  <ng-template pTemplate="body" style="overflow-y:visible;">
+  <fieldset>
+    <legend>Общие</legend>
+    <p-button [style]="{'width':'100%', 'margin-bottom':'1rem'}" (onClick)="econDialog.showHide(true)">Основные экономические нормативы</p-button>
+  </fieldset>
+  <div class="header">
+    <p-dropdown [options]="mnkDs" [(ngModel)]="selectedMnk" (onChange)="emitMnk($event)"
+                optionLabel="NAME_ORG" placeholder="Выберите МНК" [style]="{'width':'200px', 'margin-right': '0.5rem'}"></p-dropdown>
+    <p-button (onClick)="showDictionaries($event)" [disabled]="selectedMnk === undefined">Справочники</p-button>
+  </div>
+
+  <fieldset>
+    <legend>ГТМ</legend>
+
+    <p-dropdown [options]="buttons" [(ngModel)]="selectedGtm" optionLabel="title" [style]="{'width':'100%', 'margin-bottom':'1rem'}"
+              [disabled]="selectedMnk === undefined"></p-dropdown>
+
+  </fieldset>
+  <fieldset>
+    <legend>Варианты</legend>
+
+    <!-- <p-dropdown [options]="buttons" [(ngModel)]="selectedGtm" optionLabel="title"  [style]="{'width':'100%', 'margin-bottom':'1rem'}"
+                [disabled]="selectedMnk === undefined"></p-dropdown> --> <!-- (onChange)="pageSelected.emit(selectedGtm);" -->
+    <div>
+      <p-radioButton [(ngModel)]="selectedWellValue" *ngFor="let r of radioButtons" [name]="r.groups" [value]="r" [label]="r.label" [disabled]="selectedMnk === undefined" ></p-radioButton>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <p-button (onClick)="pageEmit()" [disabled]="selectedMnk === undefined" [style]="{'width': '100%', 'display': 'grid', 'grid-template-rows': 'auto 0'}">Применить</p-button>
+  </fieldset>
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <fieldset>
+        <legend>Загрузить данные из Паруса</legend>
+        <p-button [style]="{'width':'100%', 'margin-bottom':'1rem'}" (onClick)="fileInput.click()">Выбрать файл</p-button>
+        <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
+      </fieldset>
+  </ng-template>
+
+
+</p-dialog>
+<app-dictionaries-dialog #dictisDialog></app-dictionaries-dialog>
+<app-economics-dialog #econDialog></app-economics-dialog>
+<app-alert #alertFileInput ></app-alert>
+

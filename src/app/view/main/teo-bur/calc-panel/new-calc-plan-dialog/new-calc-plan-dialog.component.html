@@ -1,0 +1,18 @@
+<p-dialog [header]="'Сохранение варианта расчета'" [(visible)]="displayModal" [style]="{width: '370px', maxHeight: '500px'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false" [closable]="true">
+  <ng-template pTemplate="body" style="overflow-y:visible;">
+    <div style="display: grid; grid-template-rows: auto auto">
+      <div style="display: grid; grid-template-columns: auto 30px; padding: 5px;">
+        <label>Варианту расчета присваивается номер</label>
+        <input type="number" [(ngModel)]="calcNumber" readonly/>
+      </div>
+      <div style="display: grid; grid-template-rows: auto auto; padding: 5px;">
+        <textarea [(ngModel)]="calcDescription" placeholder="Введите комментарий" class="descr_ta" rows="10"></textarea>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton (click)="saveCalculation()">Ок</button>
+  </ng-template>
+</p-dialog>
+<app-alert #alert></app-alert>

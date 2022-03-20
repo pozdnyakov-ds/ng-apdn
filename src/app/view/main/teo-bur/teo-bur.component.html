@@ -1,0 +1,68 @@
+<div class="fill-by-pos">
+<!--  style="width:100%; height:100%; display: grid; grid-template-rows: 3rem auto;"-->
+  <div class="panelbar">
+<!--    <p-dropdown [options]="[{type: 1, name: 'Новая'}, {type: 2, name: 'Пробуренная'}]" [(ngModel)]="selectedType" (ngModelChange)="typeChange()"-->
+<!--                optionLabel="name" placeholder="Выберите тип" [style]="{'width':'200px', 'margin-right': '0.5rem'}"-->
+<!--                filterBy="WELL_NAME" [disabled]="!typeIsEnabled">-->
+<!--    </p-dropdown>-->
+    <p-dropdown [options]="wellsDs" [(ngModel)]="selectedWell" (ngModelChange)="getAmortizationData()"
+                optionLabel="WELL_NAME" placeholder="Выберите скважину" [style]="{'width':'200px', 'margin-right': '0.5rem'}"
+                [filter]="true" filterBy="WELL_NAME" [disabled]="!typeIsEnabled">
+      <ng-template let-well pTemplate="item">
+          <div style="width: 100%; float: right; text-align: end;">{{well.WELL_NAME}}</div>
+      </ng-template>
+    </p-dropdown>
+    <div *ngIf="page !== undefined && page.isNewWell">
+      <p-button (click)="newWellDialog.showHide(true)" class="m-right" icon="pi pi-plus"
+                [ngClass]="{'p-disabled': !typeIsEnabled}"
+      title="Добавить скважину">
+<!--                [ngClass]="{'p-disabled': !(selectedType && selectedType.type === 1)}">-->
+      </p-button>
+      <p-button (click)="removeWell()" class="m-right" icon="pi pi-minus"
+                [ngClass]="{'p-disabled': !(typeIsEnabled && selectedWell)}"
+      title="Удалить скважину">
+<!--                [ngClass]="{'p-disabled': !(selectedType && selectedType.type === 1 && selectedWell)}">        -->
+      </p-button>
+    </div>
+    <button pButton (click)="prognoz()" class="m-right">Прогноз</button>
+    <app-calc-panel #calcPanel (caluclateEmit)="calculate()" [calcObject]="calcObject" (fromCalcPlan)="loadFromCalcPlan($event)" ></app-calc-panel>
+  </div>
+  <div class="table">
+    <div class="page-container" [ngClass]="{'hidden': show !== pages[0]}">
+      <hot-table [hotId]="id" [settings]="hotSettings" licenseKey = 'non-commercial-and-evaluation'></hot-table>
+    </div>
+<!--    <div class="page-container" [ngClass]="{'hidden': show.name !== pages[1].name}"> -->
+<!--      <app-amort-deduction-page #amortDeductPage></app-amort-deduction-page> -->
+<!--    </div> -->
+    <!-- Обустройство -->
+    <div class="page-container" [ngClass]="{'hidden': show.name !== pages[1].name}">
+      <!-- <app-amort-deduction-arrangement-page #amortDeductArrangementPage></app-amort-deduction-arrangement-page> -->
+      <app-amort-deduction-equipment-page #amortDeductArrangementPage></app-amort-deduction-equipment-page>
+    </div>
+    <!--  Оборудование -->
+    <div class="page-container" [ngClass]="{'hidden': show.name !== pages[2].name}">
+      <app-amort-deduction-equipment-page #amortDeductEquipmentPage></app-amort-deduction-equipment-page>
+    </div>
+    <!-- Переменные расходы -->
+    <div class="page-container" [ngClass]="{'hidden': show.name !== pages[3].name}">
+      <app-amort-expenses-page #expensesPage></app-amort-expenses-page>
+    </div>
+    <!-- Экономические показатели -->
+    <div class="page-container" [ngClass]="{'hidden': show.name !== pages[4].name}">
+<!--      <app-amort-expenses-page #econIndicatorsPage></app-amort-expenses-page>-->
+      <app-ekon-page #econIndicatorsPage></app-ekon-page>
+    </div>
+    <!-- Экономические нормативы -->
+    <div class="page-container" [ngClass]="{'hidden': show.name !== pages[5].name}">
+<!--      <app-amort-expenses-page #econStandardPage></app-amort-expenses-page>-->
+      <app-ekon-page #econStandardPage></app-ekon-page>
+    </div>
+
+
+    <div class="list-panel">
+        <button class='page-button' [ngClass]="{'ex-selected': show === page}" *ngFor="let page of pages" (click)="show = page">{{page.name}}</button>
+    </div>
+  </div>
+</div>
+<app-new-well-dialog #newWellDlg (okHandler)="addNewWell($event)"></app-new-well-dialog>
+<app-alert #alert></app-alert>

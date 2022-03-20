@@ -1,0 +1,91 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~handsontable/dist/handsontable.full.css';
+
+$padding = 0.3rem;
+$margin = 0.3rem;
+
+html
+  overflow hidden
+  font-size: 14px;
+
+
+*
+  box-sizing border-box
+
+.fill-by-pos
+  position absolute
+  left 0
+  right 0
+  top 0
+  bottom 0
+
+.pos-abs
+  position absolute
+
+*::-webkit-scrollbar
+  width 1rem
+
+
+*::-webkit-scrollbar-track
+  background #21b473
+
+
+*::-webkit-scrollbar-thumb
+  background-color #ee3a47
+  outline 0 solid #ee3a47
+
+.hidden
+  visibility hidden
+
+.f-left
+  float left
+
+
+.clr-form-control, clr-date-container
+  margin-top 0 !important
+  margin-left 10px
+  margin-right 10px
+
+button
+  margin 0
+
+
+.h-editable-cell,
+.h-red-cell
+  background-color red !important
+
+.h-green-cell
+  background-color #7eb939 !important
+
+.h-blue-cell
+  background-color blue !important
+
+.h-yellow-cell
+  background-color yellow !important
+
+.h-white-font
+  color white !important
+.h-black-font
+  color black !important
+
+.h-formula,
+.h-red-font
+  color red !important
+.h-italic-font
+  font-style italic
+.h-bold-font
+  font-weight bold
+
+.m-right
+  margin-right $margin
+
+.handsontable .htDimmed
+  color black
+
+.padding-ba
+  padding-left 1rem
+  padding-right 1rem
+
+.htContextMenu:not(.htGhostTable) {
+  z-index: 99999999999;
+}

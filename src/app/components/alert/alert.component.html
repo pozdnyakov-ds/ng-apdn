@@ -1,0 +1,11 @@
+<p-dialog header="{{title}}" (close)="onClose()" [(visible)]="opened" [baseZIndex]="100000" [style]="{width: '40vw'}" [modal]="true">
+  <p style="margin: 30px; text-align: center;" [innerHTML]="message"></p>
+  <div *ngIf="showDetail">
+    <p style="padding-left: 10px; padding-right: 10px; max-height: 300px; width: 750px; overflow: auto;">{{detail}}</p>
+  </div>
+  <ng-template pTemplate="footer" >
+    <p-button *ngIf="type === 'yesNo'" icon="pi pi-check" (click)="onYesNoHandler('yes'); opened=false" label="Да" class="p-button-text"></p-button>
+    <p-button *ngIf="type === 'yesNo'" icon="pi pi-times" (click)="onYesNoHandler('no'); opened=false" label="Нет"></p-button>
+    <p-button *ngIf="type === 'alert'" icon="pi pi-check" (click)="opened=false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,106 @@
+@import '~handsontable/dist/handsontable.full.css';
+html {
+  overflow: hidden;
+  font-size: 14px;
+}
+* {
+  box-sizing: border-box;
+}
+.fill-by-pos {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.pos-abs {
+  position: absolute;
+}
+*::-webkit-scrollbar {
+  width: 1rem;
+}
+*::-webkit-scrollbar-track {
+  background: #21b473;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #ee3a47;
+  outline: 0 solid #ee3a47;
+}
+.hidden {
+  visibility: hidden;
+}
+.f-left {
+  float: left;
+}
+.clr-form-control,
+clr-date-container {
+  margin-top: 0 !important;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+button {
+  margin: 0;
+}
+.h-editable-cell,
+.h-red-cell {
+  background-color: #f00 !important;
+}
+.h-green-cell {
+  background-color: #7eb939 !important;
+}
+.h-blue-cell {
+  background-color: #00f !important;
+}
+.h-yellow-cell {
+  background-color: #ff0 !important;
+}
+.h-white-font {
+  color: #fff !important;
+}
+.h-black-font {
+  color: #000 !important;
+}
+.h-formula,
+.h-red-font {
+  color: #f00 !important;
+}
+.h-italic-font {
+  font-style: italic;
+}
+.h-bold-font {
+  font-weight: bold;
+}
+.m-right {
+  margin-right: 0.3rem;
+}
+.handsontable .htDimmed {
+  color: #000;
+}
+.padding-ba {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.main-container {
+  padding: 0.3rem;
+}
+.header {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3rem;
+  padding: 0.3rem;
+}
+.tabs {
+  left: 0;
+  right: 0;
+  top: 3rem;
+  height: 0rem;
+  padding: 0.3rem;
+}
+.detail-panel {
+  left: 0;
+  right: 0;
+  top: 3rem;
+  bottom: 0;
+  padding: 0.3rem;
+}

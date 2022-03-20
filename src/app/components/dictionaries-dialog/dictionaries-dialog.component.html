@@ -1,0 +1,9 @@
+<p-dialog header="Шаблоны данных" [(visible)]="displayModal" [modal]="true" [style]="{width: '400px'}" [baseZIndex]="10001"
+          [draggable]="false" [resizable]="false" [closable]="true">
+  <fieldset>
+<!--    <p-button *ngFor="let b of buttons" (onClick)="showDictionary(b)" [style]="{'width':'100%', 'margin-bottom':'1rem'}">{{b.title}}</p-button>-->
+    <p-button *ngFor="let b of dataSets" (onClick)="showDictionary(b)" [style]="{'width':'100%', 'margin-bottom':'1rem'}">{{b.name_dataset}}</p-button>
+  </fieldset>
+</p-dialog>
+<!--<app-dictionary-editor-dialog #editorDialog></app-dictionary-editor-dialog>-->
+<app-handson-dicti-editor #handsomEditorDialog ></app-handson-dicti-editor>

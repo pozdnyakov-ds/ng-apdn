@@ -1,0 +1,63 @@
+<div class="fill-by-pos">
+  <p-table
+    #table
+    selectionMode="single"
+    styleClass="p-datatable-sm"
+    [(selection)]="selectedObject"
+    [columns]="columns"
+    [value]="sourceData"
+    scrollable="true"
+    scrollHeight="flex"
+    dataKey="ID"
+    editMode="row"
+    (onRowSelect)="alert(1);"
+    >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.column" style="position: relative;" pResizableColumn>
+          <table *ngIf="col.column && col.column.toLowerCase() !== 'id'">
+            <tr>
+              <td>
+                <span style="float: left; font-size: 0.6vw;">{{col.title}}</span>
+              </td>
+              <td>
+                <p-sortIcon [field]="col.field" style="float: left;"></p-sortIcon>
+              </td>
+            </tr>
+          </table>
+          <span *ngIf="col.column && col.column.toLowerCase() === 'id'" style="float: left; font-size: 0.6vw;">№</span>
+        </th>
+        <th style="font-size: 0.6vw;">
+          Действие
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex" let-editing="editing" let-ri="rowIndex">
+      <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+        <td *ngFor="let col of columns; let idx = index" style="">
+          <p style="width: 100%; height: 100%;">
+            <p-cellEditor style="width: 100%; height: 100%;">
+              <ng-template pTemplate="input">
+                <input *ngIf="col.column.toLowerCase() !== 'id' && col.editable !== false" pInputText type="text" class="p-inputtext-sm" [(ngModel)]="rowData[col.column]">
+                <span *ngIf="col.column.toLowerCase() === 'id' || col.editable == false">{{rowData[col.column]}}</span>
+              </ng-template>
+              <ng-template pTemplate="output">
+                <div *ngIf="col.column.toLowerCase() !== 'id'">
+                  {{rowData[col.column]}}
+                </div>
+                <div *ngIf="col.column.toLowerCase() === 'id'">
+                  {{rowIndex + 1}}
+                </div>
+              </ng-template>
+            </p-cellEditor>
+          </p>
+        </td>
+        <td style="text-align:center" *ngIf="editable">
+          <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow  icon="pi pi-pencil" (click)="onRowEditInit(rowData)" class="p-button-rounded p-button-text"></button>
+          <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow  icon="pi pi-check" (click)="onRowEditSave(rowData)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+          <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow  icon="pi pi-times" (click)="onRowEditCancel(rowData, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,52 @@
+<div class="fill-by-pos main-container">
+  <app-main-dialog #mainDialog (mnkSelected)="getFields($event)" (pageSelected)="pageSelected($event)"></app-main-dialog>
+  <div class="pos-abs header" style="display: flex; justify-content: left;" *ngIf="(page !== undefined && page.isNewWell)">
+    <button pButton icon="pi pi-home" (click)="mainDialog.showHide(true)" style="margin-right: 5px;"></button>
+    <p-dropdown [options]="fieldsDs" [(ngModel)]="selectedField" (onChange)="getOes($event)"
+                optionLabel="MEST_NAME" placeholder="Выберите месторождение" [style]="{'width':'200px', 'margin-right': '0.5rem'}"></p-dropdown>
+<!--    <div class="p-field-checkbox" style="display: flex; align-items: center;">-->
+<!--      <p-checkbox [(ngModel)]="skwsFundModel.isEnabled" binary="true" inputId="binary" id="skwsFund" (onChange)="setPeriod()"></p-checkbox>-->
+<!--      <label for="skwsFund" class="padding-ba">Действующий фонд скважин за последние</label>-->
+<!--      <p-inputNumber [(ngModel)]="skwsFundModel.period" mode="decimal" [showButtons]="true" [min]="0" [max]="100" [inputStyle]="{'width': '50px'}"-->
+<!--                     [disabled]="!skwsFundModel.isEnabled" (ngModelChange)="setPeriod()">-->
+<!--      </p-inputNumber>-->
+<!--      <label for="skwsFund" class="padding-ba">года</label>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <p-multiSelect [options]="eoDs" [(ngModel)]="selectedEo" (onChange)="emitForWells()" [disabled]="!selectedField"-->
+<!--                  optionLabel="HOR_NAME" placeholder="Выберите эксплуатационный объект" [style]="{'width':'200px', 'margin-right': '0.5rem'}"></p-multiSelect>-->
+<!--      <button pButton (click)="currentTab = tabs[0]" style="visibility: hidden;">{{tabs[0].name}}</button>-->
+<!--      <button pButton (click)="currentTab = tabs[1]" style="visibility: hidden;" disabled>{{tabs[1].name}}</button>-->
+<!--      <button pButton (click)="currentTab = tabs[2]" style="visibility: hidden;" disabled>{{tabs[2].name}}</button>-->
+<!--    </div>-->
+  </div>
+  <div class="pos-abs header" style="display: flex; justify-content: left;" *ngIf="!(page !== undefined && page.isNewWell)">
+    <button pButton icon="pi pi-home" (click)="mainDialog.showHide(true)" style="margin-right: 5px;"></button>
+    <p-dropdown [options]="fieldsDs" [(ngModel)]="selectedField" (onChange)="getOes($event)"
+                optionLabel="MEST_NAME" placeholder="Выберите месторождение" [style]="{'width':'200px', 'margin-right': '0.5rem'}"></p-dropdown>
+    <div class="p-field-checkbox" style="display: flex; align-items: center;">
+      <p-checkbox [(ngModel)]="skwsFundModel.isEnabled" binary="true" inputId="binary" id="skwsFund" (onChange)="setPeriod()"></p-checkbox>
+      <label for="skwsFund" class="padding-ba">Скважины, пробуреннные за последние</label>
+      <p-inputNumber [(ngModel)]="skwsFundModel.period" mode="decimal" [showButtons]="true" [min]="1" [max]="16" [inputStyle]="{'width': '50px'}"
+                     [disabled]="!skwsFundModel.isEnabled" (ngModelChange)="setPeriod()">
+      </p-inputNumber>
+      <label for="skwsFund" class="padding-ba">года</label>
+    </div>
+    <div>
+      <p-multiSelect [options]="eoDs" [(ngModel)]="selectedEo" (onChange)="emitForWells()" [disabled]="!selectedField"
+                  optionLabel="HOR_NAME" placeholder="Выберите эксплуатационный объект" [style]="{'width':'200px', 'margin-right': '0.5rem'}"></p-multiSelect>
+      <button pButton (click)="currentTab = tabs[0]" style="visibility: hidden;">{{tabs[0].name}}</button>
+      <button pButton (click)="currentTab = tabs[1]" style="visibility: hidden;" disabled>{{tabs[1].name}}</button>
+      <button pButton (click)="currentTab = tabs[2]" style="visibility: hidden;" disabled>{{tabs[2].name}}</button>
+    </div>
+  </div>
+  <div class="pos-abs detail-panel" [ngClass]="{'hidden': currentTab.code != 0}">
+    <app-teo-bur #teobur [firstTableData]="firstTableData" [page]="page"></app-teo-bur>
+  </div>
+  <div class="pos-abs detail-panel" [ngClass]="{'hidden': currentTab.code != 1}">
+    <app-teo-bs-bgs></app-teo-bs-bgs>
+  </div>
+  <div class="pos-abs detail-panel" [ngClass]="{'hidden': currentTab.code != 2}">
+    <app-ore></app-ore>
+  </div>
+</div>

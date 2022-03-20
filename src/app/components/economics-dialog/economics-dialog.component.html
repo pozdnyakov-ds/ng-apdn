@@ -1,0 +1,8 @@
+<div class="fill-by-pos" *ngIf="displayModal" style="z-index: 100010; background-color: white; display: grid; grid-template-rows: 5rem auto;">
+  <div>
+    <button pButton class="save-btn" (click)="save()">Сохранить</button>
+    <button (click)="close()" class="psevdo-close-button">X</button>
+  </div>
+  <hot-table [hotId]="id" [settings]="hotSettings" licenseKey = 'non-commercial-and-evaluation'></hot-table>
+</div>
+<app-alert #alert></app-alert>

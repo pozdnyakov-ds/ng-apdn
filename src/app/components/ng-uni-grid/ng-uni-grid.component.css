@@ -1,0 +1,10 @@
+.button-panel {
+  width: 25px;
+  height: 25px;
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.selected-rows-search-result {
+  background-color: #7abaff !important;
+}

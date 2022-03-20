@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+.fill-by-pos {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.pos-abs {
+  position: absolute;
+}
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: #21b473;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #ee3a47;
+  outline: 0 solid #ee3a47;
+}
+.hidden {
+  visibility: hidden;
+}
+.f-left {
+  float: left;
+}
+.clr-form-control,
+clr-date-container {
+  margin-top: 0 !important;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+button {
+  margin: 0;
+}

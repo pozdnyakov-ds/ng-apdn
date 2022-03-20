@@ -1,0 +1,58 @@
+export const clearData = [
+  [
+    'Параметры',
+    'ед.измерения',
+    '2017',
+    '2018',
+    '2019',
+    '2020',
+    '2021'
+  ],
+  [
+    'Норма дисконтирования',
+    '%',
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  [
+    'Налог на имущество',
+    '%',
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  [
+    'Налог на прибыль',
+    '%',
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  [null],
+  [null],
+  [null],
+  [null],
+  [null],
+  [null],
+  [null],
+  [null],
+  [null],
+  [null],
+  [null]
+];

@@ -1,0 +1,23 @@
+<div class="fill-by-pos" *ngIf="displayModal" style="z-index: 100010; background-color: white; display: grid; grid-template-rows: 5rem auto;">
+  <div>
+      <p-button  styleClass="p-button-sm"  title='Добавить запись' (click)="uniDataGrid.addHandler()"
+                 [disabled]="!editModel.button_add">Добавить</p-button>
+      <p-button  styleClass="p-button-sm" class="button-p" title='Дублировать запись' (click)="uniDataGrid.cloneHandler()"
+                 [disabled]="!editModel.button_duplication">Дублировать</p-button>
+      <p-button  styleClass="p-button-sm" title='Удалить запись' [disabled]="!editModel.button_del"
+                 (click)="uniDataGrid.removeHandler()">Удалить</p-button>
+      <p-button  styleClass="p-button-sm" title='Отменить изменения' (click)="uniDataGrid.reset()"
+                 [disabled]="!isEdited">Отменить</p-button>
+      <p-button styleClass="p-button-sm" title='Применить изменения (в БД)'(click)="apply()"
+                [disabled]="!isEdited">Сохранить</p-button>
+     <button (click)="close()" class="psevdo-close-button">X</button>
+  </div>
+  <div style="position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    bottom: 0;">
+    <app-ng-uni-grid #unigrid [columns]="columns" [(isEdited)]="isEdited" [tableData]="tableData"></app-ng-uni-grid>
+  </div>
+</div>
+<app-alert #alert></app-alert>

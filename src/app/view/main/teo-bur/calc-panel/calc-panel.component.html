@@ -1,0 +1,35 @@
+<div class="calc-panel" >
+  <label class="padding-ba">Вариант расчета</label>
+  <p-dropdown
+              [options]="calcPlans"
+              [(ngModel)]="selectedCalcPlan"
+              optionLabel="id"
+              optionDisabled="inactive"
+              class="padding-ba"
+              placeholder="-"
+              (onChange)="calcPlanSelected($event)"
+              [ngClass]="{'p-disabled': valuesService.getWell() == undefined}"
+  >
+    <ng-template pTemplate="selectedItem">
+      <div *ngIf="selectedCalcPlan">
+        <div>{{selectedCalcPlan.id}}</div>
+      </div>
+    </ng-template>
+    <ng-template let-country pTemplate="item">
+      <div>{{country.id}}</div>
+    </ng-template>
+  </p-dropdown>
+
+<!--  <select>-->
+<!--    <option *ngFor="let opt of calcPlans" [value]="opt.id" (change)="calcPlanSelected(null)">{{opt.id}}</option>-->
+<!--  </select>-->
+
+  <p-button (click)="removeCalcPlan()" title="Удалить вариант расчета" class="padding-ba" icon="pi pi-minus" [ngClass]="{'p-disabled': !selectedCalcPlan && valuesService.getWell() == undefined}"></p-button>
+  <p-button label="Расчет ТЭО" (click)="caluclateEmit.emit()" icon="pi pi-sun" [ngClass]="{'p-disabled': valuesService.getWell() == undefined}"></p-button>
+  <p-button label="Сохранить" icon="pi pi-check" (click)="save()" [ngClass]="{'p-disabled': valuesService.getWell() == undefined}"></p-button> <!-- class="p-disabled" -->
+  <p-button label="Сохранить как" icon="pi pi-save" (onClick)="saveAs()" [ngClass]="{'p-disabled': valuesService.getWell() == undefined}" ></p-button> <!--  class="p-disabled" -->
+  <p-button label="Информация о вариантах расчета" icon="pi pi-check" (onClick)="showCalcPlans()" [ngClass]="{'p-disabled': valuesService.getWell() == undefined}"></p-button> <!-- class="p-disabled" -->
+</div>
+<app-alert #alert></app-alert>
+<app-new-calc-plan-dialog #newCalcPlanDialog [calcObject]="calcObject" (saved)="init()"></app-new-calc-plan-dialog>
+<app-calculations-list-dialog #calcList></app-calculations-list-dialog>
